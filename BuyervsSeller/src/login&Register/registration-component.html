@@ -1,0 +1,143 @@
+
+<style>
+input[type=text], input[type=Number] , input[type=email] ,input[type=password] {
+
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+</style>
+<div class="container" style="width:800px;
+	margin:0 auto;">
+  <h2 style="color:royalblue">Registration</h2>
+  <form method="post" [formGroup] = "UserForm" (ngSubmit)="onSubmit(UserForm.value)">
+    <fieldset style="background-color:lightblue">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="Name">
+    </div>
+    <div class="form-group">
+      <label>PhoneNum</label>
+      <input type="Number" class="form-control" formControlName="PhoneNo">
+    </div>
+    <div class="form-group">
+      <label>EmailId</label>
+      <input type="email" class="form-control" formControlName="EmailId">
+    </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="Password">
+      </div>
+      <div class="form-group">
+        <label>Re-enter Password</label>
+        <input type="password" class="form-control" formControlName="ReenterPassword">
+      </div>
+    <!--<div class="form-group">
+      <label>Captcha</label>
+      <input type="button" id="refresh" value="Refresh" onclick="Captcha();" />
+      <input type="text" id="txtInput" class="form-control" formControlName="Captcha">
+    </div>-->
+    <!--<input type="button" onClick="return nameForm();"value="submit">-->
+  <button type="submit" class="btn btn-primary">submit</button>
+    </fieldset>
+  </form>
+</div>
+<script>
+  function nameForm()
+  {
+    alert("called");
+
+    var name = document.forms["UserForm"]["Name"].value;
+    var name_patt = /^[a-zA-Z]{3,20}$/;
+    var num = document.forms["UserForm"]["mobile"].value;
+    var num_patt = /^[789][0-9]{9}$/;
+    var password = document.forms["UserForm"]["password"].value;
+    var repassword = document.forms["UserForm"]["repassword"].value;
+    console.log("before validation");
+    var pwd_patt = /^[a-zA-Z]{5,}$/;
+    if (!name_patt.test(name)) {
+      alert("enter the valid name");
+      //return false;
+    }
+    if (!num_patt.test(num)) {
+      alert("enter the valid mobile number");
+      // return false;
+    }
+    if(!gender){
+      alert("choose the gender");
+
+    }
+    if (!pwd_patt.test(password)) {
+      alert("enter the valid password");
+      //return false;
+    }
+    if (pwd_patt.test(password))
+    {
+      if (password != repassword)
+      {
+        alert("password is not matched");
+        return false;
+        console.log("password is not matched");
+      }
+      console.log("password is  matched");
+    }
+    if(! ValidCaptcha())
+    {
+      alert(ValidCaptcha());
+      return false;
+    }
+    return true;
+    $("table").hide();
+    console.log("hided");
+    return true;
+
+
+  }
+</script>
+<script type="text/javascript">
+  function Captcha(){
+    var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+    var i;
+    for (i=0;i<6;i++){
+      var a = alpha[Math.floor(Math.random() * alpha.length)];
+      var b = alpha[Math.floor(Math.random() * alpha.length)];
+      var c = alpha[Math.floor(Math.random() * alpha.length)];
+      var d = alpha[Math.floor(Math.random() * alpha.length)];
+      var e = alpha[Math.floor(Math.random() * alpha.length)];
+      var f = alpha[Math.floor(Math.random() * alpha.length)];
+      var g = alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' '+ f + ' ' + g;
+    document.getElementById("mainCaptcha").value = code
+  }
+  function ValidCaptcha(){
+    var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+    var string2 = removeSpaces(document.getElementById('txtInput').value);
+    if (string1 == string2){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  function removeSpaces(string){
+    return string.split(' ').join('');
+  }
+</script>
+
