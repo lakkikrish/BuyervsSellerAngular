@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup , Validators} from '@angular/forms';
 import {LoginService} from './login-service';
 import {Router} from '@angular/router';
 
@@ -15,7 +15,8 @@ export class LoginComponent {
   authountication = [];
   body;
   check;
-  constructor(private  loginservice: LoginService) {}
+  buyer;
+  constructor(private  loginservice: LoginService ,private router: Router) {}
 
   onSubmit(value) {
     console.log(value);
@@ -30,6 +31,7 @@ export class LoginComponent {
         if (resformdata === true) {
           alert('succussfully login');
           console.log("valid user");
+          this.router.navigate(['/']);
         }else {alert('invalid login');}
       });
 
