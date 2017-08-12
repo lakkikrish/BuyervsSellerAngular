@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>{{id}}</title>
+  <style>
+    .product_panel{
+      border: 2px solid #eee;
+    }
+  </style>
 </head>
-<body>
+<body class="container">
 <h1>{{name}}</h1>
-<div class="container">
+<div class="panel product_panel ">
+<div class=panel-heading>
+  <button type="button" class="btn btn-info pull-right" (click)="onPrevious(product)">Previous</button>
+</div>
+<div class="panel-body">
+  <div class="">
   <div class="row" >
     <div class="panel-group" class="col-sm-4" *ngFor="let product of products">
       <div class="panel panel-default" (click)="onClick(product)">
         <div class="panel-heading">{{product.productId}}</div>
         <div class="panel-body" >{{product.productName }}
-          <div><img src="{{product.image}}"></div>
+          <div><img src="{{product.image}}"> price: {{product.price}}</div>
+        </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!--<div class="container">
-  <div class="row" >
-    <div class="panel-group" class="col-sm-4" *ngFor="let example of examples">
-      <div class="panel panel-default" (click)="onClick(example)">
-        <div class="panel-heading">id</div>
-        <div class="panel-body" >{{example.id }}</div>
-      </div>
-    </div>
   </div>
-</div>-->
+</div>
 </body>
 </html>
 

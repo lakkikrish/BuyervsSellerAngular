@@ -4,23 +4,27 @@ import {CategoryService} from './category-service';
 
 @Component({
   selector:'products',
-  template:'<h2>productDetails<h2>'
+  templateUrl:`./productDetail-component.html`
 })
 export class ProductDetailComponent implements OnInit{
-  products =[];
+  products= [];
   productid;
   constructor(private productservice: CategoryService, private route: Router, private router: ActivatedRoute) {}
   ngOnInit(){
     let id = this.router.snapshot.params['id'];
-    alert(this.router.snapshot.params['id']);
-    this.productid = id;
-    this.productservice.getProductDetails(id)
+    let productId=this.router.snapshot.params['productId'];
+    this.productid = productId;
+    this.productservice.getProductDetails(id,productId)
       .subscribe(data => {
         this.products = data;
       });
   }
-  onClick(product){
-    this.route.navigate(['/']);
+  onPrevious(product){
+    this.route.navigate(['/Category',product.categoryId]);
+  }
+  onOrder(product){
+    this.route.navigate(['/PlaceOrder',{pdtId: product.productId}]);
+
   }
 }
 

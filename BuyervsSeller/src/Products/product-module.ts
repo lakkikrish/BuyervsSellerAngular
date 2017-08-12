@@ -11,10 +11,8 @@ const routes: Routes = [
   {
     path: 'Category', component: CategoryComponent
   },
-  {path: 'Category/:id', component: ProductComponent,
-  children:[
-    {path: ':productId', component: ProductDetailComponent}
-  ]}
+  {path: 'Category/:id', component: ProductComponent},
+  {path: 'Category/:id/:productId', component: ProductDetailComponent}
 ];
 
 @NgModule({

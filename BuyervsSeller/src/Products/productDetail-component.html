@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<h1></h1>
+<div class="container">
+  <div class="row">
+    <div class="panel-group" *ngFor="let product of products">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="height:60px">
+          <div class="col-sm-8"><h3 style="margin-top:7px;"><strong>{{product.productName }}</strong></h3></div>
+          <div class="col-sm-4 pull-right">
+            <button type="button" class="btn btn-info pull-right" (click)="onOrder(product)">BuyIt</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div><img src="{{product.image}}"></div>
+          <div>
+            price:{{product.price}}
+          </div>
+          <div>
+            Discription:{{product.productDescription}};
+          </div>
+          <div>
+            rating:{{product.rating}}
+          </div>
+          <div>
+            comments:{{product.comments}}
+          </div>
+        </div>
+        <div class="panel-footer">
+          <button type="button" class="btn btn-info " (click)="onPrevious(product)">BACK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+
+

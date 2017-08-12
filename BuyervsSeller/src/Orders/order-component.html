@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<style>
+  input[type=text], input[type=Number], input[type=email], input[type=password] {
 
-</body>
-</html>
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+</style>
+<div class="container" style="width:800px;
+	margin:0 auto;">
+  <h2 style="color:royalblue">PlaceOrder</h2>
+  <form method="post" [formGroup]="UserForm" (ngSubmit)="onSubmit(UserForm.value)">
+    <fieldset style="background-color:lightblue">
+      <div formGroupName="address"><h3>AddressInformation</h3>
+        <div style="border:2px solid aliceblue;">
+          <div class="form-group">
+            <label>street</label>
+            <input type="text" class="form-control" formControlName="street">
+          </div>
+          <div class="form-group">
+            <label>city</label>
+            <input type="text" class="form-control" formControlName="city">
+          </div>
+          <div class="form-group">
+            <label>state</label>
+            <input type="text" class="form-control" formControlName="state">
+          </div>
+          <div class="form-group">
+            <label>country</label>
+            <input type="text" class="form-control" formControlName="country">
+          </div>
+          <div class="form-group">
+            <label>zipcode</label>
+            <input type="number" class="form-control" formControlName="zipcode">
+          </div>
+        </div>
+      </div>
+      <div formGroupName="payment"><h3>PaymentDetails</h3>
+        <div style="border:2px solid aliceblue;">
+          <div class="form-group">
+            <label>card_type</label>
+            <input type="text" class="form-control" formControlName="card_type">
+          </div>
+          <div class="form-group">
+            <label>card_No</label>
+            <input type="text" class="form-control" formControlName="card_No">
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">make payment</button>
+    </fieldset>
+  </form>
+</div>
+

@@ -22,7 +22,6 @@ export class CategoryComponent implements OnInit{
     })
   }
   onClick(product){
-    alert(product.productId);
     this.route.navigate(['/Category',product.productId]);
   }
 }

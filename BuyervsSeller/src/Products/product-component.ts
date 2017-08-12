@@ -12,7 +12,6 @@ export class ProductComponent implements OnInit{
   constructor(private productservice: CategoryService, private route: Router, private router: ActivatedRoute) {}
     ngOnInit(){
       let id = this.router.snapshot.params['id'];
-      alert(this.router.snapshot.params['id']);
       this.categoryId = id;
       this.productservice.getParticularProduct(id)
         .subscribe(data => {
@@ -22,5 +21,8 @@ export class ProductComponent implements OnInit{
     onClick(product){
       this.route.navigate(['/Category',this.categoryId,product.productId]);
     }
+  onPrevious(product){
+    this.route.navigate(['/Category']);
+  }
   }
 
