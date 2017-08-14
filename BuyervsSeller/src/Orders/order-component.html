@@ -28,6 +28,7 @@
   <h2 style="color:royalblue">PlaceOrder</h2>
   <form method="post" [formGroup]="UserForm" (ngSubmit)="onSubmit(UserForm.value)">
     <fieldset style="background-color:lightblue">
+
       <div formGroupName="address"><h3>AddressInformation</h3>
         <div style="border:2px solid aliceblue;">
           <div class="form-group">
@@ -52,19 +53,44 @@
           </div>
         </div>
       </div>
-      <div formGroupName="payment"><h3>PaymentDetails</h3>
+      <!--  <div formGroupName="payment_type">-->
+      <div class="form-group">
+        <label for="sel1">payment_type</label>
+        <select class="form-control" id="sel1" formControlName="payment_type" onchange="showDiv(this)" >
+          <option value="0">cashOnDelivery</option>
+          <option value="1" id="pay">payment</option>
+        </select>
+      </div>
+      <div >
+      <div formGroupName="paymentInfo" id="paymentdetails" style="display: none;"><h3>PaymentDetails</h3>
         <div style="border:2px solid aliceblue;">
           <div class="form-group">
-            <label>card_type</label>
-            <input type="text" class="form-control" formControlName="card_type">
+            <label for="sel2">card type</label>
+            <select class="form-control" id="sel2" class="form-control" formControlName="card_type">
+              <option>debitcard</option>
+              <option>creditcard</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>card_name</label>
+            <input type="text" class="form-control" formControlName="card_Name">
           </div>
           <div class="form-group">
             <label>card_No</label>
             <input type="text" class="form-control" formControlName="card_No">
           </div>
+          <div class="form-group">
+            <label>Expiry date</label>
+            <input type="text" class="form-control" formControlName="expiry_Date">
+          </div>
+          <div class="form-group">
+            <label>cvv</label>
+            <input type="Number" class="form-control" formControlName="cvv">
+          </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">make payment</button>
+      </div>
+      <button type="submit" class="btn btn-primary">Place Order</button>
     </fieldset>
   </form>
 </div>

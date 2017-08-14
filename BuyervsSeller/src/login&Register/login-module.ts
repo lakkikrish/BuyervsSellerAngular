@@ -8,11 +8,13 @@ import {FormControl, FormGroup, FormsModule} from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import {RegistrationService} from './registration-service';
 import {LoginService} from './login-service';
+import {LogoutComponent} from "./logout-component";
+import {LogoutService} from "./logout-service";
 const routes: Routes = [
   {path: '' , component : HomeComponent},
   {path: 'Login' , component : LoginComponent},
   {path: 'Registration' , component : RegistrationComponent},
-
+  {path: 'Logout' , component : LogoutComponent},
 ];
 
 @NgModule({
@@ -24,9 +26,9 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers : [RegistrationService , LoginService]
+  providers : [RegistrationService , LoginService , LogoutService]
 })
 export class LoginModule { }
-export const LoginComponents = [HomeComponent , PagenotfoundComponent, LoginComponent , RegistrationComponent ];
+export const LoginComponents = [HomeComponent , PagenotfoundComponent, LoginComponent ,LogoutComponent , RegistrationComponent ];
 
 

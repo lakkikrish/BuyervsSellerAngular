@@ -15,5 +15,48 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // Activate Carousel
+      $("#myCarousel").carousel({interval: 50});
+
+      // Enable Carousel Indicators
+      $(".item1").click(function(){
+        $("#myCarousel").carousel(0);
+      });
+      $(".item2").click(function(){
+        $("#myCarousel").carousel(1);
+      });
+      $(".item3").click(function(){
+        $("#myCarousel").carousel(2);
+      });
+      $(".item4").click(function(){
+        $("#myCarousel").carousel(3);
+      });
+
+      // Enable Carousel Controls
+      $(".left").click(function(){
+        $("#myCarousel").carousel("prev");
+      });
+      $(".right").click(function(){
+        $("#myCarousel").carousel("next");
+      });
+
+
+    });
+    </script>
+<script>
+    function showDiv(elem){
+      if(elem.value == 1)
+        document.getElementById('paymentdetails').style.display = "block";
+
+    else
+      document.getElementById('paymentdetails').style.display = "none";
+
+    }
+
+
+
+  </script>
 </body>
 </html>

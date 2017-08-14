@@ -17,7 +17,8 @@
           </div>
         </div>
         <div class="panel-body">
-          <div><img src="{{product.image}}"></div>
+          <div class="col-sm-4"><img src="{{product.image}}"></div>
+          <div clas="col-sm-8">
           <div>
             price:{{product.price}}
           </div>
@@ -27,13 +28,16 @@
           <div>
             rating:{{product.rating}}
           </div>
-          <div>
-            comments:{{product.comments}}
           </div>
         </div>
         <div class="panel-footer">
           <button type="button" class="btn btn-info " (click)="onPrevious(product)">BACK</button>
         </div>
+          <div>
+            <label>comments:</label>
+            <p>{{product.comments}}</p>
+          </div>
+
       </div>
     </div>
   </div>

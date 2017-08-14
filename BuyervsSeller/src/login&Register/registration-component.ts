@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { RegistrationService} from './registration-service';
+import { Router} from "@angular/router";
 import {FormControl, FormGroup} from '@angular/forms';
 @Component({
   templateUrl : `./registration-component.html`,
@@ -18,7 +19,7 @@ export class RegistrationComponent {
   body;
   check;
 
-  constructor(private  registerservice: RegistrationService) {
+  constructor(private  registerservice: RegistrationService , private route: Router) {
   }
 
   onSubmit(value) {
@@ -31,9 +32,14 @@ export class RegistrationComponent {
     };
     console.log('this is form component');
     this.registerservice.authourization(this.body)
-      .subscribe(resformdata => {
-        if (this.check === true) {
-          console.log("valid user");
+      .subscribe(data => {
+        if (value.Name === data.name) {
+          alert("successfully registered");
+          this.route.navigate(["/"]);
+        }
+        else{
+          alert("not registered succefully");
+
         }
       })
     }

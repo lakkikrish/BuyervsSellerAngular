@@ -1,14 +1,35 @@
 import { Injectable } from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
+import {Http,Response} from "@angular/http";
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private router: Router) { }
+    isvalidUser=false;
+    result=false;
+    constructor(private router :Router,private _http:Http){}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('authguard service..');
-      return true;
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      this._http.get("http://192.168.35.55:8080/buyit/customer/checkSession",{withCredentials: true })
+        .map((response:Response)=>response.json())
+        .subscribe(
+          data => this.isvalidUser = data,
+          error=>{},
+          ()=>{
+            if(this.isvalidUser==true){
+              this.result=true;
+            }
+            else{
+              this.router.navigate(['/Login']);
+              this.result= false;
+            }
+          }
+        );
+      return this.result;
+    }
+
 
   }
-}
+
+
+

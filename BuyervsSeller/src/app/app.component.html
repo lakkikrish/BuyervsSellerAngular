@@ -21,9 +21,11 @@
           </div>
           </form>
         </div>&nbsp;&nbsp;
-        <a routerLink="/Registration" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Sign
+        <a *ngIf="this.isUsers" ><span class="glyphicon glyphicon-user">{{this.userName}}</span></a>&nbsp;
+        <a *ngIf="!this.isUsers" routerLink="/Registration" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Sign
           Up</a>&nbsp;&nbsp;
-        <a routerLink="/Login" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        <a *ngIf="!this.isUsers" routerLink="/Login" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        <a *ngIf="this.isUsers" routerLink="/Logout" routerLinkActive="active" (click)="changeLogin()"><span class="glyphicon glyphicon-user"></span> signOut</a>&nbsp;
       </form>
     </div>
   </div>

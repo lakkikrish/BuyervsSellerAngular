@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup , Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from './login-service';
 import {Router} from '@angular/router';
 
@@ -14,9 +14,9 @@ export class LoginComponent {
   });
   authountication = [];
   body;
-  check;
-  buyer;
-  constructor(private  loginservice: LoginService ,private router: Router) {}
+
+  constructor(private  loginservice: LoginService, private router: Router) {
+  }
 
   onSubmit(value) {
     console.log(value);
@@ -24,18 +24,27 @@ export class LoginComponent {
       "email": value.EmailId,
       "password": value.Password
     };
-    console.log('this is login component');
     this.loginservice.authourization(this.body)
-      .subscribe(resformdata => {
-        console.log('### received response : ',resformdata)
-        if (resformdata === true) {
+      .subscribe(data => {
+       // console.log('### received response : ', data.check);
+        if (data.check === true) {
+          this.loginservice.changes.next(true);
+          this.loginservice.userId.next(data.custId);
+          this.loginservice.userName.next(data.custName);
           alert('succussfully login');
+          alert(data.custId);
           console.log("valid user");
           this.router.navigate(['/']);
-        }else {alert('invalid login');}
+        } else {
+          alert('invalid login');
+        }
       });
 
   }
+  onClick(){
+    this.router.navigate(["/Registration"]);
+  }
+
 }
 
 /*
