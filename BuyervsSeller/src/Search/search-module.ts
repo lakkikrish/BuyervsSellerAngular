@@ -3,10 +3,14 @@ import { SearchComponent} from './search-component';
 import {RouterModule, Routes} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {SearchSevice} from "./search-sevice";
+import { PagenotfoundComponent } from '../login&Register/pagenotfound-component';
 const routes: Routes = [
   {
     path: 'search', component: SearchComponent
   },
+  {
+    path: 'pagenotfound', component: PagenotfoundComponent
+  }
 ]
 
 

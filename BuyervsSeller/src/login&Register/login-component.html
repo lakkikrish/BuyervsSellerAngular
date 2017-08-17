@@ -10,7 +10,7 @@
   }
 
   button {
-    background-color:darkcyan;
+    background-color: darkcyan;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -30,20 +30,34 @@
 	background-color: transparent;
 ">
   <div style="background-color:lightgray">
-  <h2 style="color:darkcyan">Login</h2>
-  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit(LoginForm.value)">
-    <fieldset style="background-color:ghostwhite; margin: 10px; padding: 5px;">
-      <div class="form-group">
-        <label>EmailId</label>
-        <input type="email" class="form-control" formControlName="EmailId">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" formControlName="Password">
-      </div>
-      <button type="submit" class="btn btn-primary" class="col-sm-3">submit</button>
-    </fieldset>
-    <button type="submit" class="btn btn-primary"(click)="onClick()">New user register here</button>
-  </form>
-</div>
+    <h2 style="color:darkcyan">Login</h2>
+    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit(LoginForm.value)">
+      <fieldset style="background-color:ghostwhite; margin: 10px; padding: 5px;">
+        <div class="form-group">
+          <label>EmailId</label>
+          <input type="email" class="form-control" formControlName="EmailId" >
+          <div
+            *ngIf="!LoginForm.controls.EmailId?.valid && (LoginForm.controls.EmailId?.dirty ||LoginForm.controls.EmailId?.touched)"
+            class="alert alert-danger">
+            <div [hidden]="!LoginForm.controls.EmailId.errors.required">
+              EmailId is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="Password">
+          <div
+            *ngIf="!LoginForm.controls.Password?.valid && (LoginForm.controls.Password?.dirty ||LoginForm.controls.Password?.touched)"
+            class="alert alert-danger">
+            <div [hidden]="!LoginForm.controls.Password.errors.required">
+              Password is required
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="!LoginForm.valid" class="btn btn-primary" class="col-sm-3">submit</button>
+      </fieldset>
+      <button type="submit" class="btn btn-primary" (click)="onClick()">New user register here</button>
+    </form>
+  </div>
 </div>

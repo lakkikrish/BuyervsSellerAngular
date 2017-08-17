@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private route: Router,private loginService :LoginService) {}
   ngOnInit(){
     this.loginService.changes.subscribe(status =>this.isUsers= status);
+    this.loginService.userName.subscribe(name => this.userName = name);
   }
   onSubmit(value){
     console.log(value);
@@ -20,6 +21,6 @@ export class AppComponent {
   }
   changeLogin(){
     this.isUsers=!this.isUsers;
-    this.route.navigate(["/"]);
+    this.route.navigate(["/Logout"]);
   }
 }

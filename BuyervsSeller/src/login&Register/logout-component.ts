@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 
 @Component({
 
-  templateUrl: `./login-component.html`,
+  template: `<h2>you are successfully logged out</h2>`,
 })
 export class LogoutComponent implements OnInit{
   authountication = [];
@@ -20,16 +20,12 @@ export class LogoutComponent implements OnInit{
           alert('succussfully logout');
           this.router.navigate(['/Login']);
         } else {
-          alert('please login');
+          alert('you stayed in same page');
           this.router.navigate(['/']);
         }
       });
 
   }
-  onClick(){
-    this.router.navigate(["/Registration"]);
-  }
-
 }
 
 

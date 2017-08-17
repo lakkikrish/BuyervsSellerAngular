@@ -23,6 +23,9 @@ export class SearchComponent implements OnInit {
       this.searchservice.getProducts(name)
         .subscribe(data => {
           this.products = data;
+          if(this.products == null){
+            this.route.navigate(['/pagenotfound']);
+          }
         })
 
     })

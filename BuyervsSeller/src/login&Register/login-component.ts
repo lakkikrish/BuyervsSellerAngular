@@ -9,8 +9,8 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent {
   LoginForm = new FormGroup({
-    EmailId: new FormControl(),
-    Password: new FormControl()
+    EmailId: new FormControl('',Validators.required),
+    Password: new FormControl('',Validators.required)
   });
   authountication = [];
   body;

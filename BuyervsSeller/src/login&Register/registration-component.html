@@ -31,23 +31,50 @@ button:hover {
     <fieldset style="background-color:ghostwhite; padding:5px;">
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" formControlName="Name">
+      <input type="text" class="form-control" formControlName="Name" #name>
+      <div *ngIf="!UserForm.controls.Name?.valid && (UserForm.controls.Name?.dirty ||UserForm.controls.Name?.touched)" class="alert alert-danger">
+        <div [hidden]="!UserForm.controls.Name.errors.required && !UserForm.controls.Name.errors.minlength && !UserForm.controls.Name.errors.maxlength">
+          Enter the valid name(minimum length 5, max length 25)
+          {{contactForm.controls.Name.errors.minlength?.requiredLength}},
+          {{contactForm.controls.Name.errors.maxlength?.requiredLength}},
+          {{contactForm.controls.Name.errors.required?.name}}
+        </div>
+      </div>
+
     </div>
     <div class="form-group">
       <label>PhoneNum</label>
       <input type="Number" class="form-control" formControlName="PhoneNo">
+      <div *ngIf="!UserForm.controls.PhoneNo?.valid && (UserForm.controls.PhoneNo?.dirty ||UserForm.controls.PhoneNo?.touched)" class="alert alert-danger">
+        <div [hidden]="!UserForm.controls.PhoneNo.errors.required && !UserForm.controls.PhoneNo.errors.maxlength">
+          enter valid 10 digit phone number
+        </div>
     </div>
     <div class="form-group">
       <label>EmailId</label>
       <input type="email" class="form-control" formControlName="EmailId">
+      <div *ngIf="!UserForm.controls.EmailId?.valid && (UserForm.controls.EmailId?.dirty ||UserForm.controls.EmailId?.touched)" class="alert alert-danger">
+        <div [hidden]="!UserForm.controls.EmailId.errors.required">
+          EmailId is required
+        </div>
+      </div>
     </div>
       <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" formControlName="Password">
+        <input type="password" class="form-control" formControlName="Password" #pwd>
+      </div>
+      <div *ngIf="!UserForm.controls.Password?.valid && (UserForm.controls.Password?.dirty ||UserForm.controls.Password?.touched)" class="alert alert-danger">
+        <div [hidden]="!UserForm.controls.Password.errors.required">
+          Password is required
+        </div>
       </div>
       <div class="form-group">
         <label>Re-enter Password</label>
-        <input type="password" class="form-control" formControlName="ReenterPassword">
+        <input type="password" class="form-control" formControlName="ReenterPassword" #conformpwd>
+        <div class="alert alert-danger" *ngIf="pwd !== conformpwd">
+          check the password you enter
+            </div>
+        </div>
       </div>
     <!--<div class="form-group">
       <label>Captcha</label>
@@ -55,7 +82,7 @@ button:hover {
       <input type="text" id="txtInput" class="form-control" formControlName="Captcha">
     </div>-->
     <!--<input type="button" onClick="return nameForm();"value="submit">-->
-  <button type="submit" class="btn btn-primary">submit</button>
+  <button type="submit" [disabled]="!UserForm.valid" class="btn btn-primary">submit</button>
     </fieldset>
   </form>
 </div>

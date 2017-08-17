@@ -1,23 +1,21 @@
 import {Component} from '@angular/core';
 import { RegistrationService} from './registration-service';
 import { Router} from "@angular/router";
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   templateUrl : `./registration-component.html`,
 })
 export class RegistrationComponent {
   UserForm = new FormGroup({
-    Name: new FormControl(),
-    PhoneNo: new FormControl(),
-    EmailId: new FormControl(),
-    Password: new FormControl(),
+    Name: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(25)]),
+    PhoneNo: new FormControl('',[Validators.required, Validators.maxLength(10)]),
+    EmailId: new FormControl('',[Validators.required]),
+    Password: new FormControl('',[Validators.required]),
     ReenterPassword: new FormControl(),
     Captcha: new FormControl()
   })
 
-  authountication = [];
   body;
-  check;
 
   constructor(private  registerservice: RegistrationService , private route: Router) {
   }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute,Router, Params} from "@angular/router";
 import {OrderService} from "./order-service";
 import {LoginService} from "../login&Register/login-service";
@@ -8,15 +8,15 @@ import {LoginService} from "../login&Register/login-service";
   templateUrl: `./order-component.html`
 })
 export class OrderComponent implements OnInit {
-  UserForm = new FormGroup({
+  OrderForm = new FormGroup({
     address: new FormGroup({
-      street: new FormControl(),
-      city: new FormControl(),
-      state: new FormControl(),
-      country: new FormControl(),
-      zipcode: new FormControl(),
+      street: new FormControl('',Validators.required),
+      city: new FormControl('',Validators.required),
+      state: new FormControl('',Validators.required),
+      country: new FormControl('',Validators.required),
+      zipcode: new FormControl('',Validators.required),
     }),
-    payment_type: new FormControl(),
+    payment_type: new FormControl('',Validators.required),
       paymentInfo: new FormGroup({
         card_type: new FormControl(),
         card_No: new FormControl(),
@@ -27,7 +27,6 @@ export class OrderComponent implements OnInit {
 
   });
   body;
-  check;
   productId;
   customerDetails={check:false,
   customerId:0,
@@ -73,7 +72,7 @@ export class OrderComponent implements OnInit {
           this.route.navigate(["/"]);
         }
         else
-          alert("your order is rejected");
+          alert("your order is rejected, Check once");
 
       })
 

@@ -10,7 +10,7 @@
   }
 
   button {
-    background-color: #4CAF50;
+    background-color: darkcyan;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -23,11 +23,12 @@
     opacity: 0.8;
   }
 </style>
+<div >
 <div class="container" style="width:800px;
-	margin:0 auto;">
-  <h2 style="color:royalblue">PlaceOrder</h2>
-  <form method="post" [formGroup]="UserForm" (ngSubmit)="onSubmit(UserForm.value)">
-    <fieldset style="background-color:lightblue">
+	margin:0 auto; background-color: lightgray">
+  <h2 style="color:darkcyan">PlaceOrder</h2>
+  <form method="post" [formGroup]="OrderForm" (ngSubmit)="onSubmit(OrderForm.value)">
+    <fieldset style="background-color:ghostwhite; margin:10px; padding:5px;">
 
       <div formGroupName="address"><h3>AddressInformation</h3>
         <div style="border:2px solid aliceblue;">
@@ -53,7 +54,6 @@
           </div>
         </div>
       </div>
-      <!--  <div formGroupName="payment_type">-->
       <div class="form-group">
         <label for="sel1">payment_type</label>
         <select class="form-control" id="sel1" formControlName="payment_type" onchange="showDiv(this)" >
@@ -90,8 +90,9 @@
         </div>
       </div>
       </div>
-      <button type="submit" class="btn btn-primary">Place Order</button>
+      <button type="submit" [disabled]="!OrderForm.valid" class="btn btn-primary">Place Order</button>
     </fieldset>
   </form>
+</div>
 </div>
 
