@@ -11,11 +11,10 @@ export class OrderService {
   }
 
   order(body) {
-    alert('trying to order');
     const headers = new Headers();
     headers.append('Content-Type',
       'application/json');
-    console.log('http object : ', this.http);
+
     return this.http.post("http://192.168.35.55:8080/buyit/order", body, {headers: headers, withCredentials: true})
       .map((response: Response) => response.json())
       .catch(this._errorHandler);

@@ -10,7 +10,6 @@ export class SearchSevice {
   }
 
   getProducts(product) {
-    alert("http://192.168.35.55:8080/buyit/" + product)
     var _url = 'http://192.168.35.55:8080/buyit/' + product;
     return this.http.get(_url)
       .map((response: Response) => response.json())

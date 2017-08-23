@@ -8,6 +8,7 @@ import {CategoryService} from './category-service';
 })
 export class ProductDetailComponent implements OnInit{
   products= [];
+  comments= [];
   productid;
   constructor(private productservice: CategoryService, private route: Router, private router: ActivatedRoute) {}
   ngOnInit(){
@@ -17,6 +18,10 @@ export class ProductDetailComponent implements OnInit{
     this.productservice.getProductDetails(id,productId)
       .subscribe(data => {
         this.products = data;
+       // this.comments = data.comments;
+        console.log(this.products);
+        console.log(data.comments);
+        console.log(this.comments);
       });
   }
   onPrevious(product){

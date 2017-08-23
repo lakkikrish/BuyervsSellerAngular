@@ -7,12 +7,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class RegistrationComponent {
   UserForm = new FormGroup({
-    Name: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(25)]),
-    PhoneNo: new FormControl('',[Validators.required, Validators.maxLength(10)]),
-    EmailId: new FormControl('',[Validators.required]),
-    Password: new FormControl('',[Validators.required]),
+    Name: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]),
+    PhoneNo: new FormControl('',[Validators.required, Validators.maxLength(10),Validators.pattern("^[789][0-9]{9}$")]),
+    EmailId: new FormControl('',[Validators.required ,Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]),
+    Password: new FormControl('',[Validators.required, Validators.pattern("^(?=.*?[a-zA-Z])(?=.*?[0-9])[a-zA-Z0-9]{2,}$")]),
     ReenterPassword: new FormControl(),
-    Captcha: new FormControl()
+    Captcha: new FormControl(),
+
   })
 
   body;
@@ -28,12 +29,11 @@ export class RegistrationComponent {
       "email" : value.EmailId,
       "password" : value.Password
     };
-    console.log('this is form component');
     this.registerservice.authourization(this.body)
       .subscribe(data => {
-        if (value.Name === data.name) {
-          alert("successfully registered");
-          this.route.navigate(["/"]);
+        if (data.flag == true) {
+          alert(" successfully registered");
+          this.route.navigate(["/Login"]);
         }
         else{
           alert("not registered succefully");
@@ -42,21 +42,4 @@ export class RegistrationComponent {
       })
     }
 }
-/*ValidateData(uname,pwd){
-
-  console.log("Working"+uname+pwd);
-  /!*this._user.ValidateUserData(uname,pwd)
-  .subscribe(resEmployeeData=>this.postedData=JSON.stringify(resEmployeeData),
-  resEmployeeError=>this.postError=resEmployeeError);*!/
-
-  this._user.ValidateUserData(uname,pwd)
-    .subscribe(data => {
-        if ( data.isValid === true) {
-          this.router.navigate(['/home']);
-        }
-      },
-      dataError => this.postError = dataError);
-
-
-}*/
 

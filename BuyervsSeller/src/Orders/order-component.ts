@@ -47,34 +47,32 @@ export class OrderComponent implements OnInit {
 
   onSubmit(value) {
     console.log(value);
-
-    alert('customerId'+this.customerDetails.customerId);
       this.body = {
        "customerId":1,
-        "street": value.street,
-        "city": value.city,
-        "state": value.state,
-        "country": value.country,
-        "zipcode": value.zipcode,
+        "street": value.address.street,
+        "city": value.address.city,
+        "state": value.address.state,
+        "country": value.address.country,
+        "zipcode": value.address.zipcode,
         "productId": this.productId,
-        "cardType": value.card_type,
-        "cardNumber": value.card_No,
-        "cardName": value.card_Name,
-        "date": value.expiry_Date,
-        "cvv": value.cvv,
+        "cardType": value.paymentInfo.card_type,
+        "cardNumber": value.paymentInfo.card_No,
+        "cardName": value.paymentInfo.card_Name,
+        "date": value.paymentInfo.expiry_Date,
+        "cvv": value.paymentInfo.cvv,
         "paymentType": value.payment_type
       };
 
     this.orderservice.order(this.body)
       .subscribe(data => {
         if (data.flag === true) {
-          alert("successfully place the order");
-          this.route.navigate(["/"]);
+          this.route.navigate(['/success']);
         }
         else
           alert("your order is rejected, Check once");
+        this.route.navigate(['/Category']);
 
-      })
+      },error=>console.log(error));
 
     }
 

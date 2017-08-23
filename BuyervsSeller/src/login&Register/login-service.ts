@@ -22,7 +22,7 @@ export class LoginService {
   userName: BehaviorSubject<any> = new BehaviorSubject("a");
 
   authourization(body) {
-    alert('You try to login');
+
     console.log('http object : ', this.http);
     const headers = new Headers();
     headers.append('Content-Type',

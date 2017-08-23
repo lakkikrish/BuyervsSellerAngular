@@ -14,7 +14,6 @@ export class LogoutService {
 
   result;
   authourization() {
-    alert('You try to logout');
     return this.http.get("http://192.168.35.55:8080/buyit/customer/logout", {withCredentials: true})
       .map((response: Response) =>response.json())
       .catch(this._errorHandler);

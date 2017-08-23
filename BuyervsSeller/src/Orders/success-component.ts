@@ -3,20 +3,17 @@ import {Router} from '@angular/router';
 
 @Component({
 
-  template: `<h3>your order is successfully placed</h3>`
+  template: `<h3>your order is successfully placed</h3>
+  <button type="button" class="btn btn-info pull-right" (click)="onClick()">
+    home
+  </button>
+  `
 })
 export class SuccessComponent {
-  isUsers=false;
-  userName="a";
   constructor(private route: Router) {}
-
-  onSubmit(value){
-    console.log(value);
-    this.route.navigate(['search',{searchTerm: value.srch_term}]);
+  onClick(){
+    this.route.navigate(['/']);
 
   }
-  changeLogin(){
-    this.isUsers=!this.isUsers;
-    this.route.navigate(["/"]);
-  }
+
 }

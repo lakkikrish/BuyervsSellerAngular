@@ -49,13 +49,19 @@ button:hover {
         <div [hidden]="!UserForm.controls.PhoneNo.errors.required && !UserForm.controls.PhoneNo.errors.maxlength">
           enter valid 10 digit phone number
         </div>
+        <div [hidden]="!UserForm.controls.PhoneNo.errors.pattern">
+        phone number must contain only 10 digits and start with either 7 or 8 or 9
+        </div>
     </div>
     <div class="form-group">
       <label>EmailId</label>
       <input type="email" class="form-control" formControlName="EmailId">
-      <div *ngIf="!UserForm.controls.EmailId?.valid && (UserForm.controls.EmailId?.dirty ||UserForm.controls.EmailId?.touched)" class="alert alert-danger">
-        <div [hidden]="!UserForm.controls.EmailId.errors.required">
-          EmailId is required
+      <div *ngIf="!UserForm.controls.EmailId?.valid && (UserForm.controls.EmailId?.dirty ||UserForm.controls.EmailId?.touched)">
+        <div [hidden]="!UserForm.controls.EmailId.errors.required"  class="alert alert-danger">
+          please enter mail id
+        </div>
+        <div [hidden]="!UserForm.controls.EmailId.errors.pattern"  class="alert alert-danger">
+          please enter valid mail id
         </div>
       </div>
     </div>
@@ -67,106 +73,20 @@ button:hover {
         <div [hidden]="!UserForm.controls.Password.errors.required">
           Password is required
         </div>
+          <div [hidden]="!UserForm.controls.Password.errors.pattern">
+           password must contain atleast one letter and one number must not contain any special charecters
+          </div>
       </div>
       <div class="form-group">
         <label>Re-enter Password</label>
         <input type="password" class="form-control" formControlName="ReenterPassword" #conformpwd>
-        <div class="alert alert-danger" *ngIf="pwd !== conformpwd">
+        <div class="alert alert-danger" *ngIf="pwd.value !== conformpwd.value">
           check the password you enter
             </div>
         </div>
       </div>
-    <!--<div class="form-group">
-      <label>Captcha</label>
-      <input type="button" id="refresh" value="Refresh" onclick="Captcha();" />
-      <input type="text" id="txtInput" class="form-control" formControlName="Captcha">
-    </div>-->
-    <!--<input type="button" onClick="return nameForm();"value="submit">-->
   <button type="submit" [disabled]="!UserForm.valid" class="btn btn-primary">submit</button>
     </fieldset>
   </form>
 </div>
 </div>
-<script>
-  function nameForm()
-  {
-    alert("called");
-
-    var name = document.forms["UserForm"]["Name"].value;
-    var name_patt = /^[a-zA-Z]{3,20}$/;
-    var num = document.forms["UserForm"]["mobile"].value;
-    var num_patt = /^[789][0-9]{9}$/;
-    var password = document.forms["UserForm"]["password"].value;
-    var repassword = document.forms["UserForm"]["repassword"].value;
-    console.log("before validation");
-    var pwd_patt = /^[a-zA-Z]{5,}$/;
-    if (!name_patt.test(name)) {
-      alert("enter the valid name");
-      //return false;
-    }
-    if (!num_patt.test(num)) {
-      alert("enter the valid mobile number");
-      // return false;
-    }
-    if(!gender){
-      alert("choose the gender");
-
-    }
-    if (!pwd_patt.test(password)) {
-      alert("enter the valid password");
-      //return false;
-    }
-    if (pwd_patt.test(password))
-    {
-      if (password != repassword)
-      {
-        alert("password is not matched");
-        return false;
-        console.log("password is not matched");
-      }
-      console.log("password is  matched");
-    }
-    if(! ValidCaptcha())
-    {
-      alert(ValidCaptcha());
-      return false;
-    }
-    return true;
-    $("table").hide();
-    console.log("hided");
-    return true;
-
-
-  }
-</script>
-<script type="text/javascript">
-  function Captcha(){
-    var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-    var i;
-    for (i=0;i<6;i++){
-      var a = alpha[Math.floor(Math.random() * alpha.length)];
-      var b = alpha[Math.floor(Math.random() * alpha.length)];
-      var c = alpha[Math.floor(Math.random() * alpha.length)];
-      var d = alpha[Math.floor(Math.random() * alpha.length)];
-      var e = alpha[Math.floor(Math.random() * alpha.length)];
-      var f = alpha[Math.floor(Math.random() * alpha.length)];
-      var g = alpha[Math.floor(Math.random() * alpha.length)];
-    }
-    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' '+ f + ' ' + g;
-    document.getElementById("mainCaptcha").value = code
-  }
-  function ValidCaptcha(){
-    var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
-    var string2 = removeSpaces(document.getElementById('txtInput').value);
-    if (string1 == string2){
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
-  function removeSpaces(string){
-    return string.split(' ').join('');
-  }
-</script>
-

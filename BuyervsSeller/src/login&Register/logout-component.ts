@@ -4,7 +4,10 @@ import {Router} from '@angular/router';
 
 @Component({
 
-  template: `<h2>you are successfully logged out</h2>`,
+  template: `<h2>you are successfully logged out</h2>
+  <button type="button" class="btn btn-info pull-right" (click)="onClick()">
+    home
+  </button>`,
 })
 export class LogoutComponent implements OnInit{
   authountication = [];
@@ -16,14 +19,17 @@ export class LogoutComponent implements OnInit{
     this.logoutservice.authourization()
       .subscribe(data => {
         console.log('### received response : ', data.check);
-        if (data.check === true) {
+        if (data.check == true) {
           alert('succussfully logout');
           this.router.navigate(['/Login']);
         } else {
-          alert('you stayed in same page');
-          this.router.navigate(['/']);
+
         }
       });
+
+  }
+  onClick(){
+    this.router.navigate(['/']);
 
   }
 }

@@ -19,11 +19,11 @@ export class SearchComponent implements OnInit {
     this.router.params.subscribe((params: Params) => {
       let name = params['searchTerm'];
       this.productName = name;
-      alert(name);
       this.searchservice.getProducts(name)
         .subscribe(data => {
           this.products = data;
-          if(this.products == null){
+          console.log(data);
+          if(this.products.length == 0){
             this.route.navigate(['/pagenotfound']);
           }
         })
@@ -32,6 +32,9 @@ export class SearchComponent implements OnInit {
   }
   onClick(product){
     this.route.navigate(['/Category',product.categoryId,product.productId]);
+  }
+  onPrevious(product) {
+    this.route.navigate(['/Category']);
   }
 }
 

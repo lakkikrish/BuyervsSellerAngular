@@ -5,13 +5,13 @@
   <title>Categories</title>
 </head>
 <body>
-<h2>Products</h2>
+<h2>Categories</h2>
 <div class="container">
   <div class="" >
     <div class="panel-group" class="col-sm-4"  *ngFor="let product of products">
       <div class="panel panel-default" (click)="onClick(product)">
-        <div class="panel-heading">{{product.productId}}</div>
-        <div class="panel-body" >{{product.productName }}
+        <div class="panel-heading">{{product.productName }}</div>
+        <div class="panel-body" >
           <div><img src="{{product.image}}"></div>
         </div>
       </div>

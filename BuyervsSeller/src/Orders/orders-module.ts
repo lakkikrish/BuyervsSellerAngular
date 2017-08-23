@@ -6,9 +6,11 @@ import { RouterModule , Routes } from '@angular/router';
 import {AuthGuardService} from "./authGurd-service";
 import {OrderService} from "./order-service";
 import { CommonModule } from '@angular/common';
+import {SuccessComponent} from './success-component';
 
 const routes: Routes = [
   {path: 'PlaceOrder' , canActivate: [AuthGuardService], component : OrderComponent },
+  {path: 'success' , component : SuccessComponent }
 ];
 @NgModule({
   imports: [
@@ -17,7 +19,7 @@ const routes: Routes = [
   exports: [
     OrderComponent, RouterModule
   ],
-  declarations : [ OrderComponent ],
+  declarations : [ OrderComponent, SuccessComponent ],
   providers : [AuthGuardService ,OrderService]
 
 })

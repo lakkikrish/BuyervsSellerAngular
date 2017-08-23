@@ -33,11 +33,13 @@
         <div class="panel-footer">
           <button type="button" class="btn btn-info " (click)="onPrevious(product)">BACK</button>
         </div>
-          <div>
+          <div style="padding:3px">
             <label>comments:</label>
-            <p>{{product.comments}}</p>
+            <div *ngFor="let comment of product.comments">
+            <p>{{comment.comment}}</p><br>
+              <p class="text-right">posted by {{comment.customerName}}</p>
           </div>
-
+      </div>
       </div>
     </div>
   </div>

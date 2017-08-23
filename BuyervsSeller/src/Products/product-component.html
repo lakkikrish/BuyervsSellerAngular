@@ -20,8 +20,8 @@
   <div class="row" >
     <div class="panel-group" class="col-sm-4" *ngFor="let product of products">
       <div class="panel panel-default" (click)="onClick(product)">
-        <div class="panel-heading">{{product.productId}}</div>
-        <div class="panel-body" style="padding: 38px;" ><h4><b>{{product.productName }}</b></h4>
+        <div class="panel-heading" style="padding: 38px;">{{product.productName }}</div>
+        <div class="panel-body"  ><h4><b></b></h4>
           <div><img src="{{product.image}}"> price: {{product.price}}</div>
         </div>
         </div>
